@@ -1,13 +1,4 @@
-﻿namespace CashOverflow.Infrastructure.Build
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        { }
-    }
-}
-
-/*// --------------------------------------------------------
+﻿// --------------------------------------------------------
 // Copyright (c) Coalition of Good-Hearted Engineers
 // Developed by me :)
 // --------------------------------------------------------
@@ -90,4 +81,4 @@ namespace CashOverflow.Infrastructure.Build
                 path: "../../../../.github/workflows/build.yml");
         }
     }
-}*/
+}
