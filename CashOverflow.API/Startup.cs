@@ -27,10 +27,12 @@ namespace CashOverflow.API
             services.AddSwaggerGen(config =>
             {
                 config.SwaggerDoc(
-                    name:"v1", 
-                    info:new OpenApiInfo { 
-                        Title = "CashOverflow.API", 
-                        Version = "v1" });
+                    name: "v1",
+                    info: new OpenApiInfo
+                    {
+                        Title = "CashOverflow.API",
+                        Version = "v1"
+                    });
             });
         }
 
@@ -41,10 +43,10 @@ namespace CashOverflow.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
 
-                app.UseSwaggerUI(config => 
+                app.UseSwaggerUI(config =>
                     config.SwaggerEndpoint(
-                        url:"/swagger/v1/swagger.json",
-                        name:"CashOverflow.API v1"));
+                        url: "/swagger/v1/swagger.json",
+                        name: "CashOverflow.API v1"));
             }
 
             app.UseHttpsRedirection();
