@@ -5,7 +5,6 @@
 
 using System.Linq;
 using System.Threading.Tasks;
-using CashOverflow.API.Models.Jobs;
 using CashOverflow.API.Models.Locations;
 using Microsoft.EntityFrameworkCore;
 
