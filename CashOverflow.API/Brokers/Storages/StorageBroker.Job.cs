@@ -23,5 +23,11 @@ namespace CashOverflow.API.Brokers.Storages
 
         public async ValueTask<Job> SelectJobByIdAsync(Guid jobId) =>
             await SelectAsync<Job>(jobId);
+
+        public async ValueTask<Job> UpdateJobAsync(Job job) =>
+            await UpdateAsync(job);
+
+        public async ValueTask<Job> DeleteJobAsync(Job job) =>
+            await DeleteAsync(job);
     }
 }

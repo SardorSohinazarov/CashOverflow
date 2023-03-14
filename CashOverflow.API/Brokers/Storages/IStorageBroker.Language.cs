@@ -14,6 +14,8 @@ namespace CashOverflow.API.Brokers.Storages
     {
         ValueTask<Language> InsertLanguageAsync(Language language);
         IQueryable<Language> SelectAllLanguages();
-        ValueTask<Language> SelectLanguageByIdAsync(Guid j);
+        ValueTask<Language> SelectLanguageByIdAsync(Guid jobId);
+        ValueTask<Language> UpdateLanguageAsync(Language language);
+        ValueTask<Language> DeleteLanguageAsync(Language language);
     }
 }
