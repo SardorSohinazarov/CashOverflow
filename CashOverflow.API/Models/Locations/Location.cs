@@ -1,4 +1,8 @@
-﻿using System.Diagnostics.Metrics;
+﻿// --------------------------------------------------------
+// Copyright (c) Coalition of Good-Hearted Engineers
+// Developed by me :)
+// --------------------------------------------------------
+
 using System;
 
 namespace CashOverflow.API.Models.Locations
