@@ -37,6 +37,7 @@ namespace CashOverflow.API
             });
 
             services.AddDbContext<StorageBroker>();
+            services.AddTransient<IStorageBroker, StorageBroker>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
