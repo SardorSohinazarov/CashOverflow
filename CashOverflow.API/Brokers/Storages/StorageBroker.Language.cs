@@ -13,7 +13,7 @@ namespace CashOverflow.API.Brokers.Storages
     {
         public DbSet<Language> Languages { get; set; }
 
-        public async ValueTask<Language> InsertLanguageAsync(Language language)=>
+        public async ValueTask<Language> InsertLanguageAsync(Language language) =>
             await InsertAsync(language);
     }
 }
