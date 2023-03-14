@@ -3,6 +3,7 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CashOverflow.API.Models.Languages;
@@ -13,5 +14,6 @@ namespace CashOverflow.API.Brokers.Storages
     {
         ValueTask<Language> InsertLanguageAsync(Language language);
         IQueryable<Language> SelectAllLanguages();
+        ValueTask<Language> SelectLanguageByIdAsync(Guid j);
     }
 }

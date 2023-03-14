@@ -3,6 +3,7 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CashOverflow.API.Models.Jobs;
@@ -19,5 +20,8 @@ namespace CashOverflow.API.Brokers.Storages
 
         public IQueryable<Job> SelectAllJobs() =>
             SelectAll<Job>();
+
+        public async ValueTask<Job> SelectJobByIdAsync(Guid jobId) =>
+            await SelectAsync<Job>(jobId);
     }
 }
