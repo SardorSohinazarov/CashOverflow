@@ -3,6 +3,7 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CashOverflow.API.Models.Locations;
@@ -19,5 +20,8 @@ namespace CashOverflow.API.Brokers.Storages
 
         public IQueryable<Location> SelectAllLocations() =>
             SelectAll<Location>();
+
+        public async ValueTask<Location> SelectLocationByIdAsync(Guid locationId) =>
+            await SelectAsync<Location>(locationId);
     }
 }
