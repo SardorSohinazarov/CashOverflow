@@ -3,6 +3,7 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using CashOverflow.API.Brokers.Storages;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,8 @@ namespace CashOverflow.API
                         Version = "v1"
                     });
             });
+
+            services.AddDbContext<StorageBroker>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
