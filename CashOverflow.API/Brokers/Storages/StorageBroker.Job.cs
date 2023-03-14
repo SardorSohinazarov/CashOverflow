@@ -4,16 +4,16 @@
 // --------------------------------------------------------
 
 using System.Threading.Tasks;
-using CashOverflow.API.Models.Locations;
+using CashOverflow.API.Models.Jobs;
 using Microsoft.EntityFrameworkCore;
 
 namespace CashOverflow.API.Brokers.Storages
 {
     public partial class StorageBroker
     {
-        public DbSet<Location> Locations { get; set; }
-        
-        public async ValueTask<Location> InsertLocationAsync(Location location)=>
-            await InsertAsync(location);
+        public DbSet<Job> Jobs { get; set; }
+
+        public async ValueTask<Job> InsertJobAsync(Job job) =>
+            await InsertAsync(job);
     }
 }
