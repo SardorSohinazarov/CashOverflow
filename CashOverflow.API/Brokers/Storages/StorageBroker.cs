@@ -3,6 +3,7 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using System.Linq;
 using System.Threading.Tasks;
 using EFxceptions;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,8 @@ namespace CashOverflow.API.Brokers.Storages
 
             return @object;
         }
+
+        private IQueryable<T> SelectAll<T>() where T : class => this.Set<T>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
