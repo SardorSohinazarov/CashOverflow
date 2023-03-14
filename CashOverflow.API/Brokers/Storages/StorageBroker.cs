@@ -31,8 +31,8 @@ namespace CashOverflow.API.Brokers.Storages
 
         private IQueryable<T> SelectAll<T>() where T : class => this.Set<T>();
 
-        private async ValueTask<T> SelectAsync<T>(params object[] @objectIds) 
-            where T:class => await this.FindAsync<T>(@objectIds);
+        private async ValueTask<T> SelectAsync<T>(params object[] @objectIds)
+            where T : class => await this.FindAsync<T>(@objectIds);
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
