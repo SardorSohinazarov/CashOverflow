@@ -3,13 +3,14 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using System.Threading.Tasks;
 using EFxceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace CashOverflow.API.Brokers.Storages
 {
-    public partial class StorageBroker : EFxceptionsContext
+    public partial class StorageBroker : EFxceptionsContext, IStorageBroker
     {
         private readonly IConfiguration configuration;
 
@@ -17,6 +18,14 @@ namespace CashOverflow.API.Brokers.Storages
         {
             this.configuration = configuration;
             this.Database.Migrate();
+        }
+
+        private async ValueTask<T> InsertAsync<T>(T @object)
+        {
+            this.Entry(@object).State = EntityState.Added;
+            await this.SaveChangesAsync();
+
+            return @object;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
