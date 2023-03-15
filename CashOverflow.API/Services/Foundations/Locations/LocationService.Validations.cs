@@ -3,8 +3,8 @@
 // Developed by me :)
 // --------------------------------------------------------
 
-using CashOverflow.API.Models.Locations.Exceptions;
 using CashOverflow.API.Models.Locations;
+using CashOverflow.API.Models.Locations.Exceptions;
 
 namespace CashOverflow.API.Services.Foundations.Locations
 {

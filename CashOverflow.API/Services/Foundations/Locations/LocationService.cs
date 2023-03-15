@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using CashOverflow.API.Models.Locations;
-using CashOverflow.API.Models.Locations.Exceptions;
 
 namespace CashOverflow.API.Services.Foundations.Locations
 {
@@ -30,6 +29,6 @@ namespace CashOverflow.API.Services.Foundations.Locations
             ValidateLocationNotNull(location);
 
             return await this.storageBroker.InsertLocationAsync(location);
-        });    
+        });
     }
 }
