@@ -3,6 +3,7 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +38,13 @@ namespace CashOverflow.API
             });
 
             services.AddDbContext<StorageBroker>();
+            AddBroker(services);
+        }
+
+        private static void AddBroker(IServiceCollection services)
+        {
             services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
