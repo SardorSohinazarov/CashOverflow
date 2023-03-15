@@ -3,24 +3,32 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using System.Linq.Expressions;
+using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using CashOverflow.API.Models.Locations;
+using CashOverflow.API.Models.Locations.Exceptions;
 using CashOverflow.API.Services.Foundations.Locations;
 using Moq;
 using Tynamix.ObjectFiller;
+using Xeptions;
 
 namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
 {
     public partial class LocationServiceTests
     {
-        private readonly Mock<IStorageBroker> mockStorageBroker;
+        private readonly Mock<IStorageBroker> storageBrokerMock;
+        private readonly Mock<ILoggingBroker> loggingBrokerMock;
         private readonly ILocationService locationService;
 
         public LocationServiceTests()
         {
-            this.mockStorageBroker = new Mock<IStorageBroker>();
+            this.storageBrokerMock = new Mock<IStorageBroker>();
+            this.loggingBrokerMock = new Mock<ILoggingBroker>();
 
-            this.locationService = new LocationService(this.mockStorageBroker.Object);
+            this.locationService = new LocationService(
+                this.storageBrokerMock.Object,
+                this.loggingBrokerMock.Object);
         }
 
 
@@ -36,7 +44,10 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             return filler;
         }
 
+        private Expression<Func<Exception, bool>> SameExceptionAs(LocationValidationException expectedLocationValidationException) =>
+            actualException => actualException.SameExceptionAs(expectedLocationValidationException);
+
         private static DateTimeOffset GetRandomDatetimeOffset() =>
-            new DateTimeRange(earliestDate:DateTime.UnixEpoch).GetValue();
+            new DateTimeRange(earliestDate: DateTime.UnixEpoch).GetValue();
     }
 }
