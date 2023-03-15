@@ -21,7 +21,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             Location persistentLocation = inputLocation;
             Location expectedLocation = persistentLocation.DeepClone();
 
-            this.mockStorageBroker.Setup(broker =>
+            this.storageBrokerMock.Setup(broker =>
                 broker.InsertLocationAsync(inputLocation))
                     .ReturnsAsync(expectedLocation);
 
@@ -32,11 +32,11 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             //then
             actualLocation.Should().BeEquivalentTo(expectedLocation);
 
-            this.mockStorageBroker.Verify(broker => 
+            this.storageBrokerMock.Verify(broker => 
                 broker.InsertLocationAsync(inputLocation),
                     Times.Once);
 
-            this.mockStorageBroker.VerifyNoOtherCalls();
+            this.storageBrokerMock.VerifyNoOtherCalls();
             
         }
     }

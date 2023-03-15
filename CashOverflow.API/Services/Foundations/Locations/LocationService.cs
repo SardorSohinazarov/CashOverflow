@@ -4,6 +4,7 @@
 // --------------------------------------------------------
 
 using System.Threading.Tasks;
+using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using CashOverflow.API.Models.Locations;
 using CashOverflow.API.Models.Locations.Exceptions;
@@ -13,9 +14,15 @@ namespace CashOverflow.API.Services.Foundations.Locations
     public class LocationService : ILocationService
     {
         private readonly IStorageBroker storageBroker;
+        private readonly ILoggingBroker loggingBroker;
 
-        public LocationService(IStorageBroker storageBroker) =>
+        public LocationService(
+            IStorageBroker storageBroker, 
+            ILoggingBroker loggingBroker)
+        {
             this.storageBroker = storageBroker;
+            this.loggingBroker = loggingBroker;
+        }
 
         public async ValueTask<Location> AddLocationAsync(Location location)
         {
