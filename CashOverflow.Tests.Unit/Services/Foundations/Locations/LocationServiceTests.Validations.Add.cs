@@ -47,7 +47,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public async Task ShouldThrowValidationExceptionOnAddIfLocationIsInvalidAndLogItAsync (string invalidText)
+        public async Task ShouldThrowValidationExceptionOnAddIfLocationIsInvalidAndLogItAsync(string invalidText)
         {
             //given
             var invalidLocation = new Location
@@ -58,11 +58,11 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             var invalidLocationException = new InvalidLocationException();
 
             invalidLocationException.AddData(
-                key:nameof(Location.Id),
+                key: nameof(Location.Id),
                 values: "Id is required");
-            
+
             invalidLocationException.AddData(
-                key:nameof(Location.Name),
+                key: nameof(Location.Name),
                 values: "Text is required");
 
             invalidLocationException.AddData(
@@ -88,7 +88,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             actualLocationValidationException.Should()
                 .BeEquivalentTo(expectedLocationValidationException);
 
-            this.loggingBrokerMock.Verify(broker => 
+            this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
                     expectedLocationValidationException))), Times.Once);
 

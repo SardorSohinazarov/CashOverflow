@@ -7,7 +7,6 @@ using System.Linq.Expressions;
 using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using CashOverflow.API.Models.Locations;
-using CashOverflow.API.Models.Locations.Exceptions;
 using CashOverflow.API.Services.Foundations.Locations;
 using Moq;
 using Tynamix.ObjectFiller;

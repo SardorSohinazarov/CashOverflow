@@ -4,7 +4,6 @@
 // --------------------------------------------------------
 
 using System;
-using System.Data;
 using CashOverflow.API.Models.Locations;
 using CashOverflow.API.Models.Locations.Exceptions;
 
@@ -17,10 +16,10 @@ namespace CashOverflow.API.Services.Foundations.Locations
             ValidateLocationNotNull(location);
 
             Validate(
-                (Rule:IsInvalid(location.Id), Parametr: nameof(Location.Id)),
-                (Rule:IsInvalid(location.Name), Parametr: nameof(Location.Name)),
-                (Rule:IsInvalid(location.CreatedDate), Parametr: nameof(Location.CreatedDate)),
-                (Rule:IsInvalid(location.UpdatedDate), Parametr: nameof(Location.UpdatedDate))
+                (Rule: IsInvalid(location.Id), Parametr: nameof(Location.Id)),
+                (Rule: IsInvalid(location.Name), Parametr: nameof(Location.Name)),
+                (Rule: IsInvalid(location.CreatedDate), Parametr: nameof(Location.CreatedDate)),
+                (Rule: IsInvalid(location.UpdatedDate), Parametr: nameof(Location.UpdatedDate))
                 //(Rule:IsInvalid(location.Country), Parametr: nameof(Location.Country))
                 );
         }
@@ -38,13 +37,13 @@ namespace CashOverflow.API.Services.Foundations.Locations
             Condition = id == Guid.Empty,
             Message = "Id is required"
         };
-        
+
         private static dynamic IsInvalid(string text) => new
         {
             Condition = string.IsNullOrWhiteSpace(text),
             Message = "Text is required"
         };
-        
+
         private static dynamic IsInvalid(DateTimeOffset date) => new
         {
             Condition = date == default,
