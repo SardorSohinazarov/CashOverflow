@@ -89,11 +89,12 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
                 .BeEquivalentTo(expectedLocationValidationException);
 
             this.loggingBrokerMock.Verify(broker => 
-                broker.LogError(It.Is(SameExceptionAs(expectedLocationValidationException))),
-                    Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedLocationValidationException))), Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
-                broker.InsertLocationAsync(It.IsAny<Location>()), Times.Never);
+                broker.InsertLocationAsync(It.IsAny<Location>()),
+                    Times.Never);
 
             this.loggingBrokerMock.VerifyNoOtherCalls();
             this.storageBrokerMock.VerifyNoOtherCalls();
