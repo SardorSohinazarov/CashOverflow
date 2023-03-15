@@ -3,6 +3,7 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using CashOverflow.API.Brokers.DateTimes;
 using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using Microsoft.AspNetCore.Builder;
@@ -45,6 +46,7 @@ namespace CashOverflow.API
         {
             services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<ILoggingBroker, LoggingBroker>();
+            services.AddTransient<IDateTimeBroker, DateTimeBroker>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
