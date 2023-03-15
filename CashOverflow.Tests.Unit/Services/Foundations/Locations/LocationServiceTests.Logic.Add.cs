@@ -37,6 +37,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
                     Times.Once);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.storageBrokerMock.VerifyNoOtherCalls();
 
         }
     }
