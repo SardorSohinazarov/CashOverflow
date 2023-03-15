@@ -24,13 +24,15 @@ namespace CashOverflow.API.Services.Foundations.Locations
             {
                 throw CreateAndLogValidationException(nullLocationException);
             }
+            catch (InvalidLocationException invalidLocationException)
+            {
+                throw CreateAndLogValidationException(invalidLocationException);
+            }
         }
 
         private LocationValidationException CreateAndLogValidationException(Xeption exception)
         {
-            var locationValidationException =
-                new LocationValidationException(exception);
-
+            var locationValidationException = new LocationValidationException(exception);
             this.loggingBroker.LogError(locationValidationException);
 
             return locationValidationException;

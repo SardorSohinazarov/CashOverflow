@@ -7,7 +7,6 @@ using System.Linq.Expressions;
 using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using CashOverflow.API.Models.Locations;
-using CashOverflow.API.Models.Locations.Exceptions;
 using CashOverflow.API.Services.Foundations.Locations;
 using Moq;
 using Tynamix.ObjectFiller;
@@ -44,8 +43,8 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             return filler;
         }
 
-        private Expression<Func<Exception, bool>> SameExceptionAs(LocationValidationException expectedLocationValidationException) =>
-            actualException => actualException.SameExceptionAs(expectedLocationValidationException);
+        private static Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
+            actualException => actualException.SameExceptionAs(expectedException);
 
         private static DateTimeOffset GetRandomDatetimeOffset() =>
             new DateTimeRange(earliestDate: DateTime.UnixEpoch).GetValue();
