@@ -17,7 +17,7 @@ namespace CashOverflow.API.Services.Foundations.Locations
         private readonly ILoggingBroker loggingBroker;
 
         public LocationService(
-            IStorageBroker storageBroker, 
+            IStorageBroker storageBroker,
             ILoggingBroker loggingBroker)
         {
             this.storageBroker = storageBroker;
@@ -28,7 +28,7 @@ namespace CashOverflow.API.Services.Foundations.Locations
         {
             try
             {
-                if(location is null)
+                if (location is null)
                 {
                     throw new NullLocationException();
                 }
@@ -36,7 +36,7 @@ namespace CashOverflow.API.Services.Foundations.Locations
             }
             catch (NullLocationException nullLocationException)
             {
-                LocationValidationException locationValidationException = 
+                LocationValidationException locationValidationException =
                     new LocationValidationException(nullLocationException);
 
                 this.loggingBroker.LogError(locationValidationException);

@@ -44,7 +44,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             return filler;
         }
 
-        private Expression<Func<Exception, bool>> SameExceptionAs(LocationValidationException expectedLocationValidationException)=>
+        private Expression<Func<Exception, bool>> SameExceptionAs(LocationValidationException expectedLocationValidationException) =>
             actualException => actualException.SameExceptionAs(expectedLocationValidationException);
 
         private static DateTimeOffset GetRandomDatetimeOffset() =>

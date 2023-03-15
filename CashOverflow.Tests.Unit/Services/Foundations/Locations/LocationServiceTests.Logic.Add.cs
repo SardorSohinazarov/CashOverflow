@@ -10,7 +10,7 @@ using Moq;
 
 namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
 {
-    public partial class LocationServiceTests 
+    public partial class LocationServiceTests
     {
         [Fact]
         public async Task ShouldAddLocationAsync()
@@ -32,12 +32,12 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             //then
             actualLocation.Should().BeEquivalentTo(expectedLocation);
 
-            this.storageBrokerMock.Verify(broker => 
+            this.storageBrokerMock.Verify(broker =>
                 broker.InsertLocationAsync(inputLocation),
                     Times.Once);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
-            
+
         }
     }
 }

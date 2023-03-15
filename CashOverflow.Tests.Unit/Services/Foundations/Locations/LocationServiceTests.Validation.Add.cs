@@ -3,7 +3,6 @@
 // Developed by me :)
 // --------------------------------------------------------
 
-using System.Linq.Expressions;
 using CashOverflow.API.Models.Locations;
 using CashOverflow.API.Models.Locations.Exceptions;
 using FluentAssertions;
@@ -19,7 +18,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             //given
             Location nullLocation = null;
             var nullLocationException = new NullLocationException();
-            var expectedLocationValidationException = 
+            var expectedLocationValidationException =
                 new LocationValidationException(nullLocationException);
 
             //when
