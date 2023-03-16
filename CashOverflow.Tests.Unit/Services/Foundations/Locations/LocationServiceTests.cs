@@ -34,6 +34,17 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
                 this.loggingBrokerMock.Object);
         }
 
+        public static TheoryData InvalidMinutes()
+        {
+            int minutesInFuture = GetRandomNumber();
+            int minutesInPast = GetRandomNegativeNumber();
+
+            return new TheoryData<int>
+            {
+                minutesInFuture, 
+                minutesInPast
+            };
+        }
 
         private static Location CreateRandomLocation() =>
             CreateLocationFiller(dates: GetRandomDatetimeOffset()).Create();
@@ -58,5 +69,8 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
 
         private static int GetRandomNumber() =>
             new IntRange(2, 9).GetValue();
+        
+        private static int GetRandomNegativeNumber() =>
+            -1*(new IntRange(2, 9).GetValue());
     }
 }
