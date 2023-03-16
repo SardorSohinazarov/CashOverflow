@@ -4,6 +4,7 @@
 // --------------------------------------------------------
 
 using System.Threading.Tasks;
+using CashOverflow.API.Brokers.DateTimes;
 using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using CashOverflow.API.Models.Locations;
@@ -14,12 +15,15 @@ namespace CashOverflow.API.Services.Foundations.Locations
     {
         private readonly IStorageBroker storageBroker;
         private readonly ILoggingBroker loggingBroker;
+        private readonly IDateTimeBroker dateTimeBroker;
 
         public LocationService(
             IStorageBroker storageBroker,
+            IDateTimeBroker dateTimeBroker,
             ILoggingBroker loggingBroker)
         {
             this.storageBroker = storageBroker;
+            this.dateTimeBroker = dateTimeBroker;
             this.loggingBroker = loggingBroker;
         }
 
