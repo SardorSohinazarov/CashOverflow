@@ -19,7 +19,14 @@ namespace CashOverflow.API.Services.Foundations.Locations
                 (Rule: IsInvalid(location.Id), Parametr: nameof(Location.Id)),
                 (Rule: IsInvalid(location.Name), Parametr: nameof(Location.Name)),
                 (Rule: IsInvalid(location.CreatedDate), Parametr: nameof(Location.CreatedDate)),
-                (Rule: IsInvalid(location.UpdatedDate), Parametr: nameof(Location.UpdatedDate))
+                (Rule: IsInvalid(location.UpdatedDate), Parametr: nameof(Location.UpdatedDate)),
+                (Rule: IsInvalid(
+                    location.CreatedDate,
+                    location.UpdatedDate,
+                    nameof(location.UpdatedDate)
+                ), 
+                Parametr: nameof(Location.CreatedDate))
+
                 //(Rule:IsInvalid(location.Country), Parametr: nameof(Location.Country))
                 );
         }
@@ -43,6 +50,15 @@ namespace CashOverflow.API.Services.Foundations.Locations
             Condition = string.IsNullOrWhiteSpace(text),
             Message = "Text is required"
         };
+
+        private static dynamic IsInvalid(
+            DateTimeOffset firstDate,
+            DateTimeOffset secondDate,
+            string secondDateName) => new
+            {
+                Condition = firstDate != secondDate,
+                Message = $"Date is not same as {secondDateName}"
+            };
 
         private static dynamic IsInvalid(DateTimeOffset date) => new
         {

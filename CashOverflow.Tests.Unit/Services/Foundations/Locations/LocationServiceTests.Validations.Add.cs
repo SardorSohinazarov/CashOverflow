@@ -42,6 +42,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
 
             this.storageBrokerMock.VerifyNoOtherCalls();
             this.loggingBrokerMock.VerifyNoOtherCalls();
+            this.dateTimeBrokerMock.VerifyNoOtherCalls();
         }
 
         [Theory]
