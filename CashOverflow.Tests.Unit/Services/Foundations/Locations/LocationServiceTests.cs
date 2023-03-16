@@ -37,6 +37,9 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
 
         private static Location CreateRandomLocation() =>
             CreateLocationFiller(dates: GetRandomDatetimeOffset()).Create();
+        
+        private static Location CreateRandomLocation(DateTimeOffset date) =>
+            CreateLocationFiller(dates: GetRandomDatetimeOffset()).Create();
 
         private static Filler<Location> CreateLocationFiller(DateTimeOffset dates)
         {
@@ -52,5 +55,8 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
 
         private static DateTimeOffset GetRandomDatetimeOffset() =>
             new DateTimeRange(earliestDate: DateTime.UnixEpoch).GetValue();
+
+        private static int GetRandomNumber() =>
+            new IntRange(2,9).GetValue();
     }
 }
