@@ -24,7 +24,7 @@ namespace CashOverflow.API.Services.Foundations.Locations
                     location.CreatedDate,
                     location.UpdatedDate,
                     nameof(location.UpdatedDate)
-                ), 
+                ),
                 Parametr: nameof(Location.CreatedDate))
 
                 //(Rule:IsInvalid(location.Country), Parametr: nameof(Location.Country))

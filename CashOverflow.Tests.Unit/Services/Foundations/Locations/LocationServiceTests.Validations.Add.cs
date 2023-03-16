@@ -6,7 +6,6 @@
 using CashOverflow.API.Models.Locations;
 using CashOverflow.API.Models.Locations.Exceptions;
 using FluentAssertions;
-using Force.DeepCloner;
 using Moq;
 
 namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
@@ -133,7 +132,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
-                    expectedLocationValidationException))),Times.Once);
+                    expectedLocationValidationException))), Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertLocationAsync(It.IsAny<Location>()),
