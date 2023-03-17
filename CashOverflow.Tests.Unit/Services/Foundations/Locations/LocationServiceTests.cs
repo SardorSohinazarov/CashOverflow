@@ -3,12 +3,15 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using System;
 using System.Linq.Expressions;
+using System.Runtime.Serialization;
 using CashOverflow.API.Brokers.DateTimes;
 using CashOverflow.API.Brokers.Loggings;
 using CashOverflow.API.Brokers.Storages;
 using CashOverflow.API.Models.Locations;
 using CashOverflow.API.Services.Foundations.Locations;
+using Microsoft.Data.SqlClient;
 using Moq;
 using Tynamix.ObjectFiller;
 using Xeptions;
@@ -34,7 +37,7 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
                 this.loggingBrokerMock.Object);
         }
 
-        public static TheoryData InvalidMinutes()
+        public static TheoryData<int> InvalidMinutes()
         {
             int minutesInFuture = GetRandomNumber();
             int minutesInPast = GetRandomNegativeNumber();
@@ -46,13 +49,16 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             };
         }
 
-        private static Location CreateRandomLocation() =>
+        private SqlException CreateSqlException() =>
+            (SqlException)FormatterServices.GetUninitializedObject(typeof(SqlException));
+
+        private Location CreateRandomLocation() =>
             CreateLocationFiller(dates: GetRandomDatetimeOffset()).Create();
 
-        private static Location CreateRandomLocation(DateTimeOffset date) =>
+        private Location CreateRandomLocation(DateTimeOffset date) =>
             CreateLocationFiller(dates: GetRandomDatetimeOffset()).Create();
 
-        private static Filler<Location> CreateLocationFiller(DateTimeOffset dates)
+        private Filler<Location> CreateLocationFiller(DateTimeOffset dates)
         {
             var filler = new Filler<Location>();
 
@@ -61,16 +67,16 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
             return filler;
         }
 
-        private static Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
             actualException => actualException.SameExceptionAs(expectedException);
 
-        private static DateTimeOffset GetRandomDatetimeOffset() =>
+        private DateTimeOffset GetRandomDatetimeOffset() =>
             new DateTimeRange(earliestDate: DateTime.UnixEpoch).GetValue();
 
         private static int GetRandomNumber() =>
-            new IntRange(2, 9).GetValue();
+            new IntRange(min:2,max:9).GetValue();
         
         private static int GetRandomNegativeNumber() =>
-            -1*(new IntRange(2, 9).GetValue());
+            -1*new IntRange(min:2,max:9).GetValue();
     }
 }

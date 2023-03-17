@@ -3,6 +3,8 @@
 // Developed by me :)
 // --------------------------------------------------------
 
+using System;
+using System.Threading.Tasks;
 using CashOverflow.API.Models.Locations;
 using FluentAssertions;
 using Force.DeepCloner;
@@ -15,29 +17,34 @@ namespace CashOverflow.Infrastructure.Build.Services.Foundations.Locations
         [Fact]
         public async Task ShouldAddLocationAsync()
         {
-            //given
-            Location randomLocation = CreateRandomLocation();
+            // given
+            DateTimeOffset randomDateTime = GetRandomDatetimeOffset();
+            Location randomLocation = CreateRandomLocation(randomDateTime);
             Location inputLocation = randomLocation;
-            Location persistentLocation = inputLocation;
-            Location expectedLocation = persistentLocation.DeepClone();
+            Location persistedLocation = inputLocation;
+            Location expectedLocation = persistedLocation.DeepClone();
+
+            this.dateTimeBrokerMock.Setup(broker => broker.GetCurrentDateTimeOffSet())
+                .Returns(randomDateTime);
 
             this.storageBrokerMock.Setup(broker =>
-                broker.InsertLocationAsync(inputLocation))
-                    .ReturnsAsync(expectedLocation);
+                broker.InsertLocationAsync(inputLocation)).ReturnsAsync(persistedLocation);
 
-            //when
+            // when
             Location actualLocation = await this.locationService
                 .AddLocationAsync(inputLocation);
 
-            //then
+            // then
             actualLocation.Should().BeEquivalentTo(expectedLocation);
 
+            this.dateTimeBrokerMock.Verify(broker => broker
+                .GetCurrentDateTimeOffSet(), Times.Once);
+
             this.storageBrokerMock.Verify(broker =>
-                broker.InsertLocationAsync(inputLocation),
-                    Times.Once);
+                broker.InsertLocationAsync(inputLocation), Times.Once);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
-            this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
             this.dateTimeBrokerMock.VerifyNoOtherCalls();
         }
     }
